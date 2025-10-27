@@ -14,20 +14,20 @@ def test_inventory():
         
         #Validar título de la página
         driver.get("https://www.saucedemo.com/")
-        assert driver.title == "Swag Labs", driver.save_screenshot("error_titulo.png") #"El título es incorrecto"
+        assert driver.title == "Swag Labs", "El título es incorrecto"
 
         print("Test título: OK")
 
         #Validar login y redirección correcta
         login(driver)
         
-        assert '/inventory.html' in driver.current_url, driver.save_screenshot("error_redireccion_login.png")#"No se redirigió al inventario."
+        assert '/inventory.html' in driver.current_url, "No se redirigió al inventario."
 
         print("Test Login: OK")
 
         #Validar existencia de menú y filtros
         menu = driver.find_element(By.ID, "react-burger-menu-btn").is_displayed()
-        assert menu, driver.save_screenshot("error_menu_no_mostrado.png")#"No se muestra el menú."
+        assert menu, driver.save_screenshot("error_menu_no_mostrado.png") #"No se muestra el menú."
         print("El menú está visible")
 
         filtro = driver.find_element(By.CLASS_NAME, "product_sort_container").is_displayed()
