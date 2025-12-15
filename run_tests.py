@@ -4,7 +4,7 @@ import tests
 # Lista de archivos de pruebas a ejecutar
 test_files = [
     "tests/test_inventory.py"
-    #"tests/test_titulo.py"
+    #"tests/test_titulo.py",
     #"tests/test_login.py"
 ]
 

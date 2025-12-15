@@ -41,16 +41,16 @@ def test_inventory():
 
         #Validar nombre y precio del primer ítem de la lista
         nombre = productos[0].find_element(By.CLASS_NAME, "inventory_item_name").text
-        assert nombre == "Sauce Labs Backpack"
+        assert nombre == "Sauce Labs Backpack", driver.save_screenshot("error_nombre_primer_prod.png")
         precio = productos[0].find_element(By.CLASS_NAME, "inventory_item_price").text
-        assert precio == "$29.99"
+        assert precio == "$29.99", driver.save_screenshot("error_precio_primer_prod.png")
         print(f"Se muestran nombre y precio correctos: {nombre}, {precio}")
 
         #Validar agregar un ítem al carrito
         driver.find_element(By.ID, "add-to-cart-sauce-labs-backpack").click()
         time.sleep(2)
         carrito = driver.find_element(By.CLASS_NAME, "shopping_cart_badge").text
-        assert carrito == "1", "No se muestra la cantidad correcta de ítems en el carrito."
+        assert carrito == "1", driver.save_screenshot("error_badge.png")#"No se muestra la cantidad correcta de ítems en el carrito."
         print(f"El carrito muestra {carrito} item")
 
         #Validar redirección al carrito
