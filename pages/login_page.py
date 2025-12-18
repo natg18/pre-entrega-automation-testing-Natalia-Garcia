@@ -22,7 +22,6 @@ class LoginPage:
         input = self.wait.until(EC.visibility_of_element_located(self._USER_INPUT))
         input.clear()
         input.send_keys(usuario)
-        time.sleep(10)
         return self
 
     def completar_pass(self, password): 

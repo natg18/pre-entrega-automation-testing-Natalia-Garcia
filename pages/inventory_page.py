@@ -37,12 +37,18 @@ class InventoryPage:
         productos = self.obtener_todos_los_productos()
 
         for producto in productos: 
-            nombre = producto.find_element(By.CLASS_NAME, self._ITEM_NAME).text
+            nombre = producto.find_element(*self._ITEM_NAME).text
 
-            #if nombre.strip()
+            if nombre.strip().lower() == nombre_producto.strip().lower():
+                boton = producto.find_element(self._ADD_TO_CART_BUTTON)
+                boton.click()
+                return self
+            else:
+                raise Exception(f"No se encontró el producto {nombre_producto}")
 
     def abrir_carrito(self): 
-        self.wait.until(EC.element_to_be_clickable(self._CART_LINK))
+        self.wait.until(EC.element_to_be_clickable(self._CART_LINK)).click()
+        return self
 
     def obtener_conteo_carrito(self): 
         try: 
@@ -51,4 +57,7 @@ class InventoryPage:
             return int(contador_carrito.text) 
         
         except Exception as e: 
+            print(f"Error en test_inventory: {e}")
             raise
+        finally: 
+            driver.quit()
